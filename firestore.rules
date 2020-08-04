@@ -1,0 +1,57 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /members/{document=**} {
+      allow create;
+      allow update: if request.auth.uid != null;
+      allow delete: if request.auth.uid != null;
+      allow read: if request.auth.uid != null;
+    }
+
+    match /config_settings/{document=**} {
+      allow read;
+      allow write: if request.auth.uid != null;
+    }
+
+    match /messages/{document=**} {
+      allow read;
+      allow write: if request.auth.uid != null;
+    }
+
+    match /teams/{document=**} {
+      allow read;
+      allow write: if request.auth.uid != null;
+    }
+
+    match /contributions/{document=**} {
+      allow read;
+      allow write: if request.auth.uid != null;
+    }
+
+    match /emailservice_waiting/{document=**} {
+      allow create;
+      allow update: if request.auth.uid != null;
+      allow delete: if request.auth.uid != null;
+      allow read: if request.auth.uid != null;
+    }
+
+    match /admin_users/{document=**} {
+      allow create;
+      allow update: if request.auth.uid != null;
+      allow delete: if request.auth.uid != null;
+      allow read: if request.auth.uid != null;
+    }
+
+    match /logs/{document=**} {
+      allow create;
+      allow update: if request.auth.uid != null;
+      allow delete: if request.auth.uid != null;
+      allow read: if request.auth.uid != null;
+    }
+
+    match /{document=**} {
+      allow read: if request.auth.uid != null;
+      allow write: if request.auth.uid != null;
+    }
+  }
+}
